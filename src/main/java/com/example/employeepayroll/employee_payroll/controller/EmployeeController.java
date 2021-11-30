@@ -27,7 +27,7 @@ public class EmployeeController {
 
     @PostMapping("/payroll")
     public ResponseEntity<EmployeePayRollResponse> employeePayRoll(@RequestBody EmployeePayRollRequest employeePayRollRequest){
-        EmployeePayRollResponse response = employeeRepository.verifyEmployeeDetails(employeePayRollRequest);
+        EmployeePayRollResponse response = employeeService.payrollOnboarding(employeePayRollRequest);
       if (Objects.equals(response.getApiResponse().getResponseCode(), "000")){
           return ResponseEntity.status(HttpStatus.CREATED).body(response);
       }
