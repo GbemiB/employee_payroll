@@ -2,15 +2,15 @@ package com.example.employeepayroll.employee_payroll.repository;
 
 import com.example.employeepayroll.employee_payroll.domain.request.EmployeePayRollRequest;
 import com.example.employeepayroll.employee_payroll.domain.response.EmployeePayRollResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.util.Objects;
-
+@Slf4j
 @Repository
 public class EmployeeRepositoryImpl implements EmployeeRepository {
-    Logger logger = LoggerFactory.getLogger(EmployeeRepositoryImpl.class);
 
     @Override
     public EmployeePayRollResponse verifyEmployeeDetails(EmployeePayRollRequest request) {
