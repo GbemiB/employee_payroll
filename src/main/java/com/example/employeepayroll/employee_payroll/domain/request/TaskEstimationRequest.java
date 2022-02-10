@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 public class TaskEstimationRequest {
 
-    private EmployeeKeyData employeeKeyData = new EmployeeKeyData();
+    private String employeeRole;
 }

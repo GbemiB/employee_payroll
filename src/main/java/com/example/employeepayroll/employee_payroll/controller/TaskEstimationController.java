@@ -22,8 +22,9 @@ public class TaskEstimationController {
     }
 
     @PostMapping("/task")
-    public ResponseEntity<TaskEstimationResponse> estimateTask(@RequestBody String employeeRole){
-        TaskEstimationResponse response = employeeService.generateEstimatedTask(employeeRole);
+    public ResponseEntity<TaskEstimationResponse> estimateTask(@RequestBody TaskEstimationRequest request){
+        TaskEstimationResponse response = employeeService.generateEstimatedTask(request);
+        log.info("Employee Role Request {} ", request);
             return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

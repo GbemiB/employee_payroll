@@ -30,32 +30,30 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public TaskEstimationResponse generateEstimatedTask(String employeeRole) {
+    public TaskEstimationResponse generateEstimatedTask(TaskEstimationRequest request) {
         TaskEstimationResponse taskEstimationResponse = new TaskEstimationResponse();
-        TaskEstimationRequest request = new TaskEstimationRequest();
-         employeeRole = request.getEmployeeKeyData().getEmployeeRole();
-        if(Objects.equals(request.getEmployeeKeyData().getEmployeeRole(), EmployeeRoles.GT)){
+        if(Objects.equals(request.getEmployeeRole(), EmployeeRoles.GT)){
             taskEstimationResponse.setTotalEstimatedTask("12,675 USD");
         }
-        else if (Objects.equals(request.getEmployeeKeyData().getEmployeeRole(), EmployeeRoles.ET)){
+        else if (Objects.equals(request.getEmployeeRole(), EmployeeRoles.ET)){
             taskEstimationResponse.setTotalEstimatedTask("15,271 USD");
         }
-        else if (Objects.equals(request.getEmployeeKeyData().getEmployeeRole(), EmployeeRoles.JE)){
+        else if (Objects.equals(request.getEmployeeRole(), EmployeeRoles.JE)){
         taskEstimationResponse.setTotalEstimatedTask("19,979 USD");
         }
-        else if (Objects.equals(request.getEmployeeKeyData().getEmployeeRole(), EmployeeRoles.SE)){
+        else if (Objects.equals(request.getEmployeeRole(), EmployeeRoles.SE)){
             taskEstimationResponse.setTotalEstimatedTask("29,975 USD");
         }
-        else if (Objects.equals(request.getEmployeeKeyData().getEmployeeRole(), EmployeeRoles.AM)){
+        else if (Objects.equals(request.getEmployeeRole(), EmployeeRoles.AM)){
             taskEstimationResponse.setTotalEstimatedTask("31,975 USD");
         }
-        else if (Objects.equals(request.getEmployeeKeyData().getEmployeeRole(), EmployeeRoles.MG)){
+        else if (Objects.equals(request.getEmployeeRole(), EmployeeRoles.MG)){
             taskEstimationResponse.setTotalEstimatedTask("39,975 USD");
         }
-        else if (Objects.equals(request.getEmployeeKeyData().getEmployeeRole(), EmployeeRoles.DR)){
+        else if (Objects.equals(request.getEmployeeRole(), EmployeeRoles.DR)){
             taskEstimationResponse.setTotalEstimatedTask("41,975 USD");
         }
-        else if (Objects.equals(request.getEmployeeKeyData().getEmployeeRole(), EmployeeRoles.CO)){
+        else if (Objects.equals(request.getEmployeeRole(), EmployeeRoles.CO)){
             taskEstimationResponse.setTotalEstimatedTask("58,975 USD");
         }
 
