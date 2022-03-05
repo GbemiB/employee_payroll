@@ -1,12 +1,13 @@
 package com.example.employeepayroll.employee_payroll.service;
 
 import com.example.employeepayroll.employee_payroll.adapter.EmployeePayrollBuilder;
-import com.example.employeepayroll.employee_payroll.domain.EmployeeRoles;
+import com.example.employeepayroll.employee_payroll.domain.Employee;
+import com.example.employeepayroll.employee_payroll.domain.request.EmployeeGrossSalaryRequest;
 import com.example.employeepayroll.employee_payroll.domain.request.EmployeePayRollRequest;
 import com.example.employeepayroll.employee_payroll.domain.request.TaskEstimationRequest;
+import com.example.employeepayroll.employee_payroll.domain.response.EmployeeGrossSalaryResponse;
 import com.example.employeepayroll.employee_payroll.domain.response.EmployeePayRollResponse;
 import com.example.employeepayroll.employee_payroll.domain.response.TaskEstimationResponse;
-import com.example.employeepayroll.employee_payroll.repository.EmployeeRepositoryImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -15,53 +16,78 @@ import java.util.Objects;
 @Slf4j
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    private final EmployeeRepositoryImpl employeeRepository;
-
-    public EmployeeServiceImpl(EmployeeRepositoryImpl employeeRepository) {
-        this.employeeRepository = employeeRepository;
-    }
 
     @Override
     public EmployeePayRollResponse payrollOnboarding(EmployeePayRollRequest employeePayRollRequest) {
         EmployeePayrollBuilder resBuilder = new EmployeePayrollBuilder();
         EmployeePayRollResponse response = resBuilder.payrollBuilder(employeePayRollRequest);
-        log.info(String.valueOf(response));
         return response;
     }
 
     @Override
-    public TaskEstimationResponse generateEstimatedTask(TaskEstimationRequest request) {
-        TaskEstimationResponse taskEstimationResponse = new TaskEstimationResponse();
-        if(Objects.equals(request.getEmployeeRole(), EmployeeRoles.GT)){
-            taskEstimationResponse.setTotalEstimatedTask("12,675 USD");
+    public TaskEstimationResponse estimateTask(TaskEstimationRequest request) {
+        TaskEstimationResponse response = new TaskEstimationResponse();
+        if(Objects.equals(request.getEmployeeRole(), "GT")){
+            response.setTotalEstimatedTask(Employee.GT.getTask() + " " + Employee.GT.getSalaryCurrency());
         }
-        else if (Objects.equals(request.getEmployeeRole(), EmployeeRoles.ET)){
-            taskEstimationResponse.setTotalEstimatedTask("15,271 USD");
+        else if (Objects.equals(request.getEmployeeRole(), "ET")){
+            response.setTotalEstimatedTask(Employee.ET.getTask() + " " + Employee.ET.getSalaryCurrency());
         }
-        else if (Objects.equals(request.getEmployeeRole(), EmployeeRoles.JE)){
-        taskEstimationResponse.setTotalEstimatedTask("19,979 USD");
+        else if (Objects.equals(request.getEmployeeRole(), "JE")){
+        response.setTotalEstimatedTask(Employee.JE.getTask()  + " " + Employee.JE.getSalaryCurrency());
         }
-        else if (Objects.equals(request.getEmployeeRole(), EmployeeRoles.SE)){
-            taskEstimationResponse.setTotalEstimatedTask("29,975 USD");
+        else if (Objects.equals(request.getEmployeeRole(), "SE")){
+            response.setTotalEstimatedTask(Employee.SE.getTask() + " " + Employee.SE.getSalaryCurrency());
         }
-        else if (Objects.equals(request.getEmployeeRole(), EmployeeRoles.AM)){
-            taskEstimationResponse.setTotalEstimatedTask("31,975 USD");
+        else if (Objects.equals(request.getEmployeeRole(), "AM")){
+            response.setTotalEstimatedTask(Employee.AM.getTask() + " " + Employee.AM.getSalaryCurrency());
         }
-        else if (Objects.equals(request.getEmployeeRole(), EmployeeRoles.MG)){
-            taskEstimationResponse.setTotalEstimatedTask("39,975 USD");
+        else if (Objects.equals(request.getEmployeeRole(), "MG")){
+            response.setTotalEstimatedTask(Employee.MG.getTask() + " " + Employee.MG.getSalaryCurrency());
         }
-        else if (Objects.equals(request.getEmployeeRole(), EmployeeRoles.DR)){
-            taskEstimationResponse.setTotalEstimatedTask("41,975 USD");
+        else if (Objects.equals(request.getEmployeeRole(), "DR")){
+            response.setTotalEstimatedTask(Employee.DR.getTask() + " " + Employee.DR.getSalaryCurrency());
         }
-        else if (Objects.equals(request.getEmployeeRole(), EmployeeRoles.CO)){
-            taskEstimationResponse.setTotalEstimatedTask("58,975 USD");
+        else if (Objects.equals(request.getEmployeeRole(), "CO")){
+            response.setTotalEstimatedTask(Employee.CO.getTask() + " " + Employee.CO.getSalaryCurrency());
+        } else {
+            response.setTotalEstimatedTask("INVALID EMPLOYEE ROLE");
         }
 
-        taskEstimationResponse.setTotalEstimatedTask("INVALID EMPLOYEE ROLE");
+        return response;
+    }
 
-        return taskEstimationResponse;
+    @Override
+    public EmployeeGrossSalaryResponse generateGrossSalary(EmployeeGrossSalaryRequest request) {
+        EmployeeGrossSalaryResponse response = new EmployeeGrossSalaryResponse();
+        if(Objects.equals(request.getEmployeeRole(), "GT")){
+            response.setGrossSalary(Employee.GT.getGrossSalary() + " " + Employee.GT.getSalaryCurrency());
+        }
+        else if (Objects.equals(request.getEmployeeRole(), "ET")){
+            response.setGrossSalary(Employee.ET.getGrossSalary() + " " + Employee.ET.getSalaryCurrency());
+        }
+        else if (Objects.equals(request.getEmployeeRole(), "JE")){
+            response.setGrossSalary(Employee.JE.getGrossSalary() + " " + Employee.JE.getSalaryCurrency());
+        }
+        else if (Objects.equals(request.getEmployeeRole(), "SE")){
+            response.setGrossSalary(Employee.SE.getGrossSalary() + " " + Employee.SE.getSalaryCurrency());
+        }
+        else if (Objects.equals(request.getEmployeeRole(), "AM")){
+            response.setGrossSalary(Employee.AM.getGrossSalary() + " " + Employee.AM.getSalaryCurrency());
 
-        // TODO INVALID EMPLOYEE ROLE IS BEEN RETURNED IN THE API CALL
+        }
+        else if (Objects.equals(request.getEmployeeRole(), "MG")){
+            response.setGrossSalary(Employee.MG.getGrossSalary() + " " + Employee.MG.getSalaryCurrency());
+        }
+        else if (Objects.equals(request.getEmployeeRole(), "DR")){
+            response.setGrossSalary(Employee.DR.getGrossSalary() + " " + Employee.DR.getSalaryCurrency());
+        }
+        else if (Objects.equals(request.getEmployeeRole(), "CO")){
+            response.setGrossSalary(Employee.CO.getGrossSalary() + " " + Employee.CO.getSalaryCurrency());
+        } else {
+            response.setGrossSalary("INVALID EMPLOYEE ROLE");
+        }
+        return response;
     }
 
     @Override

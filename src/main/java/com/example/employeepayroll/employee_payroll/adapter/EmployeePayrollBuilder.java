@@ -1,13 +1,15 @@
 package com.example.employeepayroll.employee_payroll.adapter;
 
-import com.example.employeepayroll.employee_payroll.domain.request.EmployeeAllowancesRequest;
 import com.example.employeepayroll.employee_payroll.domain.request.EmployeePayRollRequest;
 import com.example.employeepayroll.employee_payroll.domain.response.EmployeePayRollResponse;
+
+import com.example.employeepayroll.employee_payroll.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class EmployeePayrollBuilder {
+
     public EmployeePayRollResponse payrollBuilder(EmployeePayRollRequest request) {
         EmployeePayRollResponse response = new EmployeePayRollResponse();
 
